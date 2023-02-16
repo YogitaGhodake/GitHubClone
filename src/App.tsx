@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import SearchResults from "./container/SearchResults";
+import UserProfile from "./container/UserProfile";
+import { User } from "./Interface/Interface";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 function App() {
+  const [searchResults, setSearchResults] = useState<User[]>([]);
+  const [selectedUserId, setSelectedUserId] = useState<string>("");
+
+  const handleUserSelect = (userId: string) => {
+    setSelectedUserId(userId);
+    console.log("userId", userId);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" 
+            element = {
+            <SearchResults results={searchResults} onUserSelect={handleUserSelect}/> } />
+          
+          <Route path="/profile/:username" 
+          element = {<UserProfile />} />   
+          {/* <Route path="/profile" element= {<h1>Hello</h1>}/>  */}
+          
+        </Routes>
+      </Router>
+    </>
   );
 }
 
