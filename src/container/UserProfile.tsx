@@ -66,21 +66,35 @@ console.log("userID==> 18", username);
   }
 
   if (!userProfile) {
-    return <div>Loading profile...</div>;
+    return null;
   }
 
   // console.log("userProfile.avatar_url", userProfile.avatar_url)
 console.log("Tags========> 55empty",userProfile.tags);
 
 return (
-  <div className="mainDiv">
-    
-    <img src={userProfile.avatar_url} alt={username} />
-    <h3>{userProfile.login}</h3>
+  <div className="container my-4">
+    <div className="row">
+      <div className="col-md-4">
+      <img src={userProfile.avatar_url} alt={username} className="img-fluid"/>
+    <h3 className="mt-3">{userProfile.login}</h3>
     <h3>{userProfile.bio}</h3>
-     <div>Languages: {languages.length > 0 ? languages.join(', ') : 'None'}</div>
-    {username && <UserRepos username={userProfile.login} id={0} name={''} html_url={''} />}
+      </div>
+    </div>
+    
+     <div className="col-md-8">
+      <h2> Languages</h2> 
+      <ul>
+            {languages.map((language) => (
+              <li key={language}>{language}</li>
+            ))}
+          </ul>
+
+      {username && <UserRepos username={userProfile.login} id={0} name={''} html_url={''} />}
+     
   </div>
+  </div>
+  
 );
 }
 

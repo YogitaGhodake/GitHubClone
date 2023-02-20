@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import UserCard from "../components/Pagination/UserCrad";
 import Paginate from "../components/Pagination/Paginate";
 import Navbar from "../components/Navbar/Navbar";
@@ -27,11 +27,14 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage, setUsersPerPage] = useState(10);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setUsers([]);
+    const response = await fetch(`https://api.github.com/search/users?q=${searchTerm}`);
+    const data = await response.json();
+    // setQuery(searchTerm);
+    setUsers(data.items || []);
     setCurrentPage(1);
-    // navigate(`/search/${query}`);
+
   };
 
   useEffect(() => {
@@ -67,6 +70,9 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   return (
     <div className="mainDiv">
       <div className="container_2">
+        <div>
+          <button>Back</button>
+        </div>
         <div className="container text-center">
           <img
             src="./green_2.png"
@@ -93,14 +99,15 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                   placeholder="Search"
                   type="search"
                   aria-label="Search"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
 
               <button
                 className="btn btn-outline-success my-2 my-sm-0 search-button"
                 type="submit"
+              
               >
                 Search
               </button>
