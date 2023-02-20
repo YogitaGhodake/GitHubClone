@@ -1,0 +1,28 @@
+.mainDiv{
+    background-image: url("../../public/bg.avif");
+    /* height: 960px; */
+    /* width: 100%; */
+    /* object-fit: cover; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden; 
+    height: auto;
+} 
+
+.inputbtn {
+    display: flex;
+    margin-left: 155px;
+}
+
+.search-input {
+    margin-right: 230px;
+}
+  
+  
+  .search-button {
+    margin-left: 10px;
+  }
+  
+  .usersmain {
+    margin-top: 40px !important;
+  }

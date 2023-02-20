@@ -18,10 +18,8 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" 
-            element = {
-            <SearchResults results={searchResults} onUserSelect={handleUserSelect}/> } />
-          
+        <Route path="/" element={<SearchResults results={searchResults} onUserSelect={handleUserSelect} />} />
+        
           <Route path="/profile/:username" 
           element = {<UserProfile />} />   
           {/* <Route path="/profile" element= {<h1>Hello</h1>}/>  */}

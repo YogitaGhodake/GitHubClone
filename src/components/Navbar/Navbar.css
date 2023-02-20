@@ -2,3 +2,16 @@
     border-radius: 50%;
     object-fit: cover;
 }
+
+.navbar {
+    /* background-color:rgb(166,212,212); */
+    /* background: linear-gradient(to right, #a3d2c3, #0b2436); */
+    /* background: radial-gradient(circle at center, #fcb045, #fd1d1d, #833ab4); */
+}
+
+.navbar img {
+    margin-left: 15px;
+}
+.nav-link {
+    color: white;
+}
